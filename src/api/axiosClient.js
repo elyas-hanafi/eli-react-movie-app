@@ -1,22 +1,24 @@
-import axios from "axios";
-import queryString from 'query-string'
+import axios from 'axios';
+import queryString from 'query-string';
 
-import apiConfig from "./apiConfig";
+import apiConfig from './apiConfig';
 
 const axiosClient = axios.create({
     baseURL: apiConfig.baseUrl,
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    paramsSerializer: params => queryString.stringify({ ...params, api_key: apiConfig.apiKey })
-})
+    headers: {'Content-Type': 'multipart/form-data' },
+    paramsSerializer: params => queryString.stringify({...params, api_key: apiConfig.apiKey})
+});
 
-axiosClient.interceptors.request.use(async (config) => config)
+axiosClient.interceptors.request.use(async (config) => config);
+
 axiosClient.interceptors.response.use((response) => {
-    if (response && response.data) response.data
-    return response
-}, err => {
-    throw err
-})
+    if (response && response.data) {
+        return response.data;
+    }
 
-export default axiosClient
+    return response;
+}, (error) => {
+    throw error;
+});
+
+export default axiosClient;
