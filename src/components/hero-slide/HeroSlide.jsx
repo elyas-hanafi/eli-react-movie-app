@@ -10,7 +10,7 @@ import tmdbApi, { category, movieType } from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 
 import './hero-slide.scss';
-import { useNavigate } from 'react-router';
+import { useHistory } from 'react-router';
 
 const HeroSlide = () => {
 
@@ -60,7 +60,7 @@ const HeroSlide = () => {
 
 const HeroSlideItem = props => {
 
-    let hisrory = useNavigate();
+    let hisrory = useHistory();
 
     const item = props.item;
 
